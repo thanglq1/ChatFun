@@ -104,6 +104,20 @@ class LoginController: UIViewController {
         return imageView
     }()
     
+    lazy var loginRegisterSegmentedControl: UISegmentedControl = {
+        var segmentedControl = UISegmentedControl(items: ["Login", "Register"])
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.tintColor = UIColor.white
+        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.addTarget(self, action: #selector(loginRegisterChangeUI), for: .valueChanged)
+        return segmentedControl
+    }()
+    
+    func loginRegisterChangeUI() {
+        let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex)
+        loginRegisterButton.setTitle(title, for: .normal)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,10 +126,12 @@ class LoginController: UIViewController {
         view.addSubview(inputContainerView)
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImage)
+        view.addSubview(loginRegisterSegmentedControl)
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
+        setupLoginRegisterSegmentedControl()
         
     }
     
@@ -181,10 +197,21 @@ class LoginController: UIViewController {
     
     func setupProfileImageView() {
         // constrainst x, y, width, height
+        
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImage.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -12).isActive = true
+        profileImage.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
         profileImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    func setupLoginRegisterSegmentedControl() {
+        // constrainst x, y, width, height
+        
+        loginRegisterSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginRegisterSegmentedControl.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -12).isActive = true
+        loginRegisterSegmentedControl.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        loginRegisterSegmentedControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        
     }
     
     // change status bar color
