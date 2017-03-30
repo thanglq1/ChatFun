@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>227681050777-r4b9h6qc2tfgkgna1va77icbk3qfdfn7.apps.googleusercontent.com</string>
+	<string>227681050777-gdasfhvjs92ef3sa9qdupns8tq47570q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.227681050777-r4b9h6qc2tfgkgna1va77icbk3qfdfn7</string>
+	<string>com.googleusercontent.apps.227681050777-gdasfhvjs92ef3sa9qdupns8tq47570q</string>
 	<key>API_KEY</key>
 	<string>AIzaSyB9Vk3kgzRcOk9p9ypRf26NFaRpQa3hSCQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>codepro.FireBase</string>
+	<string>codepro.ChatFun</string>
 	<key>PROJECT_ID</key>
 	<string>fir-chat-1ae12</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:227681050777:ios:2cb54438df6d3b86</string>
+	<string>1:227681050777:ios:933f2f1556b89f56</string>
 	<key>DATABASE_URL</key>
 	<string>https://fir-chat-1ae12.firebaseio.com</string>
 </dict>

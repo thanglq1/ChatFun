@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B0E9835AF40265524591AB7 /* Pods_ChatFun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB250C753E0AA7BF3FFAEF5D /* Pods_ChatFun.framework */; };
-		DF0C483F1E8D456F00B77BAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF0C483E1E8D456F00B77BAF /* GoogleService-Info.plist */; };
+		DF0C48411E8D588A00B77BAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF0C48401E8D588A00B77BAF /* GoogleService-Info.plist */; };
 		DFFD983B1E8D41D2008865E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFD983A1E8D41D2008865E6 /* AppDelegate.swift */; };
 		DFFD98401E8D41D2008865E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFFD983E1E8D41D2008865E6 /* Main.storyboard */; };
 		DFFD98421E8D41D2008865E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFFD98411E8D41D2008865E6 /* Assets.xcassets */; };
@@ -20,7 +20,8 @@
 /* Begin PBXFileReference section */
 		7F4C5B393257387B677FAA4B /* Pods-ChatFun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatFun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatFun/Pods-ChatFun.debug.xcconfig"; sourceTree = "<group>"; };
 		C686F51532E9B8E5C25FB5C8 /* Pods-ChatFun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatFun.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatFun/Pods-ChatFun.release.xcconfig"; sourceTree = "<group>"; };
-		DF0C483E1E8D456F00B77BAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF0C48401E8D588A00B77BAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DF0C48421E8D5BCA00B77BAF /* ChatFun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatFun.entitlements; sourceTree = "<group>"; };
 		DFFD98371E8D41D2008865E6 /* ChatFun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatFun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFD983A1E8D41D2008865E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFFD983F1E8D41D2008865E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,13 +75,14 @@
 		DFFD98391E8D41D2008865E6 /* ChatFun */ = {
 			isa = PBXGroup;
 			children = (
+				DF0C48421E8D5BCA00B77BAF /* ChatFun.entitlements */,
 				DFFD984C1E8D41DD008865E6 /* Controller */,
 				DFFD983A1E8D41D2008865E6 /* AppDelegate.swift */,
 				DFFD983E1E8D41D2008865E6 /* Main.storyboard */,
 				DFFD98411E8D41D2008865E6 /* Assets.xcassets */,
 				DFFD98431E8D41D2008865E6 /* LaunchScreen.storyboard */,
 				DFFD98461E8D41D2008865E6 /* Info.plist */,
-				DF0C483E1E8D456F00B77BAF /* GoogleService-Info.plist */,
+				DF0C48401E8D588A00B77BAF /* GoogleService-Info.plist */,
 			);
 			path = ChatFun;
 			sourceTree = "<group>";
@@ -139,6 +141,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = MGECFT7Y4D;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -166,7 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFFD98451E8D41D2008865E6 /* LaunchScreen.storyboard in Resources */,
-				DF0C483F1E8D456F00B77BAF /* GoogleService-Info.plist in Resources */,
+				DF0C48411E8D588A00B77BAF /* GoogleService-Info.plist in Resources */,
 				DFFD98421E8D41D2008865E6 /* Assets.xcassets in Resources */,
 				DFFD98401E8D41D2008865E6 /* Main.storyboard in Resources */,
 			);
@@ -353,6 +360,7 @@
 			baseConfigurationReference = 7F4C5B393257387B677FAA4B /* Pods-ChatFun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatFun/ChatFun.entitlements;
 				DEVELOPMENT_TEAM = MGECFT7Y4D;
 				INFOPLIST_FILE = ChatFun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -367,6 +375,7 @@
 			baseConfigurationReference = C686F51532E9B8E5C25FB5C8 /* Pods-ChatFun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChatFun/ChatFun.entitlements;
 				DEVELOPMENT_TEAM = MGECFT7Y4D;
 				INFOPLIST_FILE = ChatFun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -33,11 +33,27 @@ class LoginController: UIViewController {
     }()
     
     func register() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
+        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text else {
+            print("name or email or password not vaild")
             return
         }
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user, error) in })
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user, error) in
+            print("name= \(name) email = \(email) password = \(password)")
+            
+            if error != nil {
+                print("error hazzz = \(error)")
+                return
+            }
+            
+            guard let uid = user?.uid else {
+                print("uid nil hazzz")
+                return
+            }
+            print("USERID \(uid)")
+            let fbDatareference = FIRDatabase.database().reference()
+            fbDatareference.child("users").child(uid).setValue(["name":name, "email":email])
+        })
     }
     
     var nameTextField: UITextField = {
