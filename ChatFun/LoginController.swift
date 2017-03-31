@@ -150,26 +150,34 @@ class LoginController: UIViewController {
 
         // set height of inputContainerView
         
-        let heightOfInputViewContainer: CGFloat = selectedSegmentIndex == 0 ? 100:150
+        let heightOfInputViewContainer: CGFloat = selectedSegmentIndex == 0 ? 100 : 150
         inputContainerViewHeightAnchor?.constant = heightOfInputViewContainer
         
         // set height of name text field
         
-        let multiplierOfNameTextField: CGFloat = selectedSegmentIndex == 0 ? 0:1/3
+        let multiplierOfNameTextField: CGFloat = selectedSegmentIndex == 0 ? 0 : 1/3
         nameTextFieldHeightAnchor?.isActive = false
         nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: multiplierOfNameTextField)
         nameTextFieldHeightAnchor?.isActive = true
         
         // set height of email text field
         
-        let multiplierOfEmailTextField: CGFloat = selectedSegmentIndex == 0 ? 1/2:1/3
+        let multiplierOfEmailTextField: CGFloat = selectedSegmentIndex == 0 ? 1/2 : 1/3
         emailTextFieldHeightAnchor?.isActive = false
         emailTextFieldHeightAnchor = emailTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: multiplierOfEmailTextField)
         emailTextFieldHeightAnchor?.isActive = true
         
+        // set height of password text field
+        
+        let multiplierOfPassTextField: CGFloat = selectedSegmentIndex == 0 ? 1/2 : 1/3
+        passwordTextFieldHeightAnchor?.isActive = false
+        passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: multiplierOfPassTextField)
+        passwordTextFieldHeightAnchor?.isActive = true
+
+        print("inputcontainer = \(String(describing: inputContainerViewHeightAnchor))")
         print("nameTf = \(String(describing: nameTextFieldHeightAnchor))")
         print("emailTf = \(String(describing: emailTextFieldHeightAnchor))")
-        print("passTf = \(String(describing: passwordTextField.heightAnchor))")
+        print("passTf = \(String(describing: passwordTextFieldHeightAnchor))")
     }
     
     override func viewDidLoad() {
@@ -243,7 +251,8 @@ class LoginController: UIViewController {
         passwordTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12).isActive = true
         passwordTextField.rightAnchor.constraint(equalTo: inputContainerView.rightAnchor, constant: 12).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: emailSepratorView.bottomAnchor).isActive = true
-        passwordTextField.heightAnchor.constraint(equalTo: emailTextField.heightAnchor).isActive = true
+        passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: 1/3)
+        passwordTextFieldHeightAnchor?.isActive = true
     }
     
     func setupLoginRegisterButton() {
