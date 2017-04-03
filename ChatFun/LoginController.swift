@@ -58,31 +58,6 @@ class LoginController: UIViewController {
         })
     }
     
-    func handleRegister() {
-        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text else {
-            print("name or email or password not vaild")
-            return
-        }
-        
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: {(user, error) in
-            print("name= \(name) email = \(email) password = \(password)")
-            
-            if error != nil {
-                print("error hazzz = String(error)")
-                return
-            }
-            
-            guard let uid = user?.uid else {
-                print("uid nil hazzz")
-                return
-            }
-            print("USERID \(uid)")
-            let fbDatareference = FIRDatabase.database().reference()
-            fbDatareference.child("users").child(uid).setValue(["name":name, "email":email])
-            self.dismiss(animated: true, completion: nil)
-        })
-    }
-    
     var nameTextField: UITextField = {
         let nameTF = UITextField()
         nameTF.placeholder = "Name"
@@ -120,7 +95,7 @@ class LoginController: UIViewController {
         return password
     }()
     
-    var profileImage: UIImageView = {
+   lazy var profileImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "ic_no_avatar")
@@ -128,8 +103,15 @@ class LoginController: UIViewController {
         // change image to white color
         imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = UIColor.white
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleProfileImageView))
+        imageView.addGestureRecognizer(gesture)
+        imageView.isUserInteractionEnabled = true
+        
         return imageView
     }()
+    
+
     
     lazy var loginRegisterSegmentedControl: UISegmentedControl = {
         var segmentedControl = UISegmentedControl(items: ["Login", "Register"])
