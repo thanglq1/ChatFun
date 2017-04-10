@@ -15,6 +15,7 @@ class LoginController: UIViewController {
     var nameTextFieldHeightAnchor: NSLayoutConstraint?
     var emailTextFieldHeightAnchor: NSLayoutConstraint?
     var passwordTextFieldHeightAnchor: NSLayoutConstraint?
+    var updateTitle: UpdateTitleBarDelegate?
     
     var inputContainerView: UIView = {
         let view = UIView()
@@ -53,6 +54,7 @@ class LoginController: UIViewController {
                 print("login error hazz \(String(describing: error))")
                 return
             }
+            self.updateTitle?.updateTitleBar()
             self.dismiss(animated: true, completion: nil)
             
         })
