@@ -10,7 +10,10 @@ import UIKit
 import Firebase
 
 class MessageController: UITableViewController, UpdateTitleBarDelegate {
-
+    
+    
+    var messages = [Message]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,10 +22,41 @@ class MessageController: UITableViewController, UpdateTitleBarDelegate {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self, action: #selector(handleNewMessage))
+        print("gogogo->")
+        observeMessage()
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        let message = messages[indexPath.row]
+        cell.textLabel?.text = message.fromId
+        cell.detailTextLabel?.text = message.text
+        
+        return cell
+    }
+    
+    func observeMessage() {
+        let ref = FIRDatabase.database().reference().child("message")
+        ref.observe(.childAdded, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                
+                self.messages.append(message)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            }, withCancel: nil)
     }
     
     func handleNewMessage() {
         let newMessageControler = NewMessageController()
+        newMessageControler.messController = self
         let navigation = UINavigationController(rootViewController: newMessageControler)
         present(navigation, animated: true, completion: nil)
     }
@@ -92,15 +126,15 @@ class MessageController: UITableViewController, UpdateTitleBarDelegate {
         containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
 
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(showChatLog))
-        titleView.addGestureRecognizer(gesture)
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(showChatLog))
+//        titleView.addGestureRecognizer(gesture)
         
         self.navigationItem.titleView = titleView
     }
     
-    func showChatLog() {
+    func showChatLogForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogController.titleBar = "AAAAA"
+        chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     

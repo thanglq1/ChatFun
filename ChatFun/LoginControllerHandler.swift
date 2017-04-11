@@ -73,7 +73,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                     if let profileImageURL = metadata?.downloadURL()?.absoluteString {
                         let fbDatareference = FIRDatabase.database().reference()
                         print("insert db start")
-                        fbDatareference.child("users").child(uid).setValue(["name":name, "email":email, "profileImageURL": profileImageURL])
+                        fbDatareference.child("users").child(uid).setValue(["name":name, "email":email, "profileImageURL": profileImageURL, "userId" : uid])
                         print("insert db end")
                         self.updateTitle?.updateTitleBar()
                     }
